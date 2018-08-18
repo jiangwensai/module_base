@@ -10,7 +10,7 @@ ext {
     android = [
                compileSdkVersion       : 27,
                buildToolsVersion       : '27.0.3',
-               minSdkVersion           : 17,
+               minSdkVersion           : 16,
                targetSdkVersion        : 23,
                versionCode             : 1,
                versionName             : "1.0.0",
@@ -72,7 +72,8 @@ ext {
                     //banner
                     "banner"                         : 'com.youth.banner:banner:1.4.10',
                     //eventbus
-                    "eventbus"                       : 'org.greenrobot:eventbus:3.0.0',
+                    "eventbus"                       : 'org.greenrobot:eventbus:3.1.1',
+                    "eventbusProcessor"              : 'org.greenrobot:eventbus-annotation-processor:3.0.1',
                     //baseRecyclerViewAdapterHelper
                     "baseRecyclerViewAdapterHelper"  : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22',
                     //Bugly集成

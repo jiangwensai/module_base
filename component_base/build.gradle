@@ -13,6 +13,12 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         //MultiDex分包方法
         multiDexEnabled true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath = true
+            }
+        }
     }
 
     buildTypes {
@@ -38,27 +44,34 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile 'junit:junit:4.12'
-    compile rootProject.ext.dependencies["appcompat_v7"]
-    compile rootProject.ext.dependencies["constraint_layout"]
-    compile rootProject.ext.dependencies["cardview-v7"]
-    compile rootProject.ext.dependencies["recyclerview-v7"]
-    compile rootProject.ext.dependencies["support-v4"]
-    compile rootProject.ext.dependencies["design"]
-    compile rootProject.ext.dependencies["support_annotations"]
+    testImplementation 'junit:junit:4.12'
+    implementation rootProject.ext.dependencies["appcompat_v7"]
+    implementation rootProject.ext.dependencies["constraint_layout"]
+    implementation rootProject.ext.dependencies["cardview-v7"]
+    implementation rootProject.ext.dependencies["recyclerview-v7"]
+    implementation rootProject.ext.dependencies["support-v4"]
+    implementation rootProject.ext.dependencies["design"]
+    implementation rootProject.ext.dependencies["support_annotations"]
     annotationProcessor rootProject.ext.dependencies["butterknife_compiler"]
-    compile rootProject.ext.dependencies["butterknife"]
-    //MultiDex分包方法
-    compile rootProject.ext.dependencies["multidex"]
+    implementation rootProject.ext.dependencies["butterknife"]
+    implementation rootProject.ext.dependencies["multidex"]
+    implementation rootProject.ext.dependencies["rxjava2:rxandroid"]
+    implementation rootProject.ext.dependencies["rxjava2"]
+    implementation rootProject.ext.dependencies["retrofit2"]
+    implementation rootProject.ext.dependencies["converter-gson"]
+    implementation rootProject.ext.dependencies["adapter-rxjava2"]
+    implementation rootProject.ext.dependencies["eventbus"]
+    implementation rootProject.ext.dependencies["eventbusProcessor"]
 }
 
 def siteUrl = 'https://github.com/jiangwensai/module_base' // 项目的主页
 def gitUrl = 'https://github.com/jiangwensai/module_base.git' // Git仓库的url
-group = "com.jiangwensai." //一般填你唯一的包名
+group = "com.jiangwensai" //一般填你唯一的包名
+version = "1.0.1-beta1"
 //gradlew bintrayUpload
 install {
     repositories.mavenInstaller {
@@ -107,7 +120,7 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 }
 
 artifacts {
-//    archives javadocJar
+    archives javadocJar
     archives sourcesJar
 }
 
@@ -128,6 +141,16 @@ bintray {
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]
         publish = true
+    }
+}
+
+javadoc {
+    options {
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
+        links "http://docs.oracle.com/javase/7/docs/api"
     }
 }
 

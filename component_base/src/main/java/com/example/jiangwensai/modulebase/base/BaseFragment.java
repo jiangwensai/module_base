@@ -1,35 +1,36 @@
 package com.example.jiangwensai.modulebase.base;
 
+import android.os.Binder;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
-
-import com.example.jiangwensai.modulebase.manager.ActivityControl;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
-/**
- * Created by jiangwensai on 18/8/11.
- */
-
-public abstract class BaseActivity extends FragmentActivity {
+public abstract class BaseFragment extends Fragment {
     private Unbinder unBinder;
     private CompositeDisposable compositeDisposable;
 
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(getLayoutId());
-        unBinder = ButterKnife.bind(this);
-        ActivityControl.getInstance().addActivity(this);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(getLayout(), container, false);
+        unBinder = ButterKnife.bind(this, view);
+        initData();
+        initView();
+        return view;
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         if (unBinder != null) {
             unBinder.unbind();
         }
@@ -37,7 +38,6 @@ public abstract class BaseActivity extends FragmentActivity {
             compositeDisposable.clear();
             compositeDisposable = null;
         }
-        ActivityControl.getInstance().removeTopActivity(this);
     }
 
     protected void addDisposable(Disposable disposable) {
@@ -47,5 +47,9 @@ public abstract class BaseActivity extends FragmentActivity {
         compositeDisposable.add(disposable);
     }
 
-    protected abstract int getLayoutId();
+    protected abstract int getLayout();
+
+    protected abstract void initView();
+
+    protected abstract void initData();
 }
