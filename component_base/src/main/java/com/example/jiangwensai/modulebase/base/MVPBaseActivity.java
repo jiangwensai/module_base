@@ -11,8 +11,7 @@ public abstract class MVPBaseActivity<V extends IView, P extends IPresenter<V>> 
     protected P mPresenter;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initData() {
         if (mPresenter == null) {
             mPresenter = createPresenter();
         }

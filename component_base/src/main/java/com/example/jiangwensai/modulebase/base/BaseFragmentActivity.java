@@ -1,12 +1,8 @@
 package com.example.jiangwensai.modulebase.base;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-
 public abstract class BaseFragmentActivity<F extends BaseFragment> extends BaseActivity {
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initView() {
         initFragment();
     }
 

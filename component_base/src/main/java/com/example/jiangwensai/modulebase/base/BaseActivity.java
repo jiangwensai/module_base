@@ -25,6 +25,8 @@ public abstract class BaseActivity extends FragmentActivity {
         setContentView(getLayoutId());
         unBinder = ButterKnife.bind(this);
         ActivityControl.getInstance().addActivity(this);
+        initData();
+        initView();
     }
 
     @Override
@@ -48,4 +50,8 @@ public abstract class BaseActivity extends FragmentActivity {
     }
 
     protected abstract int getLayoutId();
+
+    protected abstract void initData();
+
+    protected abstract void initView();
 }
