@@ -146,7 +146,11 @@ public class ImageUtils {
             e.printStackTrace();
             return null;
         } finally {
-            CloseUtils.close(is);
+            try {
+                is.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
     }
     /**
@@ -469,7 +473,11 @@ public class ImageUtils {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            CloseUtils.close(os);
+            try {
+                os.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
         return ret;
     }
@@ -521,7 +529,11 @@ public class ImageUtils {
             e.printStackTrace();
             return null;
         } finally {
-            CloseUtils.close(is);
+            try {
+                is.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
     }
 

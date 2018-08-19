@@ -386,7 +386,11 @@ public final class FileUtils {
         } catch (NoSuchAlgorithmException | IOException e) {
             e.printStackTrace();
         } finally {
-            CloseUtils.close(dis);
+            try {
+                dis.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
         return null;
     }

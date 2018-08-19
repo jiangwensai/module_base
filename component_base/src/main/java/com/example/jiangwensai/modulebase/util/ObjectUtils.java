@@ -13,20 +13,7 @@ import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Map;
 
-/**
- * @author by TOME .
- * @data on      2018/6/25 14:07
- * @describe ${对象相关}
- */
-
 public class ObjectUtils {
-
-    /**
-     * 判断对象是否为空
-     *
-     * @param obj The object.
-     * @return {@code true}: yes<br>{@code false}: no
-     */
     public static boolean isEmpty(final Object obj) {
         if (obj == null) {
             return true;
